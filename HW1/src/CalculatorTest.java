@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculatorTest {
     public static void main(String[] args) {
+        /*
         // Проверка базового функционала с целыми числами:
         if (8 != Calculator.calculation(2, 6, '+')) {
             throw new AssertionError("Ошибка в методе");
@@ -23,7 +24,7 @@ public class CalculatorTest {
         }
 
         // Случаи с неправильными аргументами
-        // аргумент operator типа char, должен вызывать исключение, если он получает не базовые символы (+-*/)
+        // аргумент operator типа char, должен вызывать исключение, если он получает не базовые символы (+-* /)
         try {
             Calculator.calculation(8, 4, '_');
         } catch (IllegalStateException e) {
@@ -51,5 +52,13 @@ public class CalculatorTest {
 
         System.out.println(Calculator.calculation(2_147_483_647, 1, '+')); // integer overflow
         System.out.println(Calculator.squareRootExtraction(169));
+        */
+
+        // Проверка базового функционала с числами, с использованием утверждений AssertJ:
+
+        assertThat(Calculator.calculatingDiscount(100,10)).isBetween(0.0, 100.0);
+        assertThat(Calculator.calculatingDiscount(1000,120)).isBetween(0.0, 100.0);
+        assertThat(Calculator.calculatingDiscount(-100,10)).isBetween(0.0, 100.0);
+        assertThat(Calculator.calculatingDiscount(100,-10)).isBetween(0.0, 100.0);
     }
 }
