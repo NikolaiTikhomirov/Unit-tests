@@ -56,9 +56,10 @@ public class CalculatorTest {
 
         // Проверка базового функционала с числами, с использованием утверждений AssertJ:
 
-        assertThat(Calculator.calculatingDiscount(100,10)).isBetween(0.0, 100.0);
-        assertThat(Calculator.calculatingDiscount(1000,120)).isBetween(0.0, 100.0);
-        assertThat(Calculator.calculatingDiscount(-100,10)).isBetween(0.0, 100.0);
-        assertThat(Calculator.calculatingDiscount(100,-10)).isBetween(0.0, 100.0);
+        assertThat(Calculator.calculatingDiscount(100,10)).isEqualTo(90);
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(-10, 10)).isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(100, -10)).isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(-10, 10)).hasMessageContaining("Incorrect Amount");
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(100, -10)).hasMessageContaining("Discount is incorrect");
     }
 }
