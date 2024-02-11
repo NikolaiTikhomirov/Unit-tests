@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.seminars.third.hw.MainHW;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-// import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class MainHWTest {
     // HW 3.1. Нужно покрыть тестами метод на 100%
@@ -33,14 +34,16 @@ public class MainHWTest {
     // HW 3.2. Нужно написать метод который проверяет, попадает ли переданное число в интервал (25;100) и возвращает true, если попадает и false - если нет,
     // покрыть тестами метод на 100%
 
-    @Test
-    void checkNumBetween(){
-        assertThat(mainHW.numberInInterval(27)).isEqualTo(true);
+    @ParameterizedTest
+    @ValueSource(ints = {25, 57, 100})
+    void checkNumBetween(int n){
+        assertThat(mainHW.numberInInterval(n)).isEqualTo(true);
     }
 
-    @Test
-    void checkNumNotBetween(){
-        assertThat(mainHW.numberInInterval(17)).isEqualTo(false);
+    @ParameterizedTest
+    @ValueSource(ints = {-100, 24, 101})
+    void checkNumNotBetween(int n){
+        assertThat(mainHW.numberInInterval(n)).isEqualTo(false);
     }
 
 }
